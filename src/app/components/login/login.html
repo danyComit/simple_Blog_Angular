@@ -1,0 +1,67 @@
+<div class="flex items-center justify-center h-screen">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="bg-white border-2 border-black rounded-2xl p-8 shadow-[5px_5px_0px_#000] flex flex-col gap-4 w-full max-w-sm"
+  >
+    <h2 class="text-2xl font-medium text-gray-900">welcome back!</h2>
+
+    <div>
+      <input
+        formControlName="username"
+        placeholder="username..."
+        class="w-full border-2 border-black rounded-xl px-4 py-2 text-sm shadow-[3px_3px_0px_#000] outline-none"
+      />
+      @if (form.controls.username.invalid && form.controls.username.touched) {
+        <p class="text-red-400 text-xs mt-1">username must be at least 5 characters</p>
+      }
+    </div>
+
+    <div>
+      <input
+        formControlName="password"
+        type="password"
+        placeholder="password..."
+        class="w-full border-2 border-black rounded-xl px-4 py-2 text-sm shadow-[3px_3px_0px_#000] outline-none"
+      />
+      @if (form.controls.password.hasError('minlength') && form.controls.password.touched) {
+        <p class="text-red-400 text-xs mt-1">password must be at least 8 characters</p>
+      }
+      @if (form.controls.password.hasError('weakPassword') && form.controls.password.touched) {
+        <p class="text-red-400 text-xs mt-1">
+          password must have uppercase, lowercase, number and special character
+        </p>
+      }
+    </div>
+    <div>
+      <input
+        formControlName="phoneNumber"
+        type="phoneNumber"
+        placeholder="phoneNumber..."
+        class="w-full border-2 border-black rounded-xl px-4 py-2 text-sm shadow-[3px_3px_0px_#000] outline-none"
+      />
+      @if (form.controls.phoneNumber.hasError('minlength') && form.controls.password.touched) {
+        <p class="text-red-400 text-xs mt-1">Phone Number must be at least 12 characters</p>
+      }
+      @if (form.controls.phoneNumber.hasError('noExtension') && form.controls.password.touched) {
+        <p class="text-red-400 text-xs mt-1">
+          Phone Number must have the Lebanese Country Code +961
+        </p>
+      }
+      @if (
+        form.controls.phoneNumber.hasError('noEnoughNumbers') && form.controls.password.touched
+      ) {
+        <p class="text-red-400 text-xs mt-1">
+          Phone Number must have 8 numbers after the country code
+        </p>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="bg-green-400 border-2 border-black px-4 py-2 rounded-full shadow-[3px_3px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all text-sm font-medium"
+    >
+      login!
+    </button>
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="max-w-2xl mx-auto p-6">
+  <a routerLink="/" class="inline-block mb-6 text-sm font-medium text-gray-500 hover:text-gray-800"
+    >← back</a
+  >
+
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+    <div>
+      <input
+        formControlName="title"
+        placeholder="post title..."
+        class="w-full border-2 border-black rounded-xl px-4 py-2 text-sm shadow-[3px_3px_0px_#000] outline-none"
+      />
+      @if (addForm.controls.title.invalid && addForm.controls.title.touched) {
+        <p class="text-red-400 text-xs mt-1">title must be at least 3 characters</p>
+      }
+    </div>
+
+    <div>
+      <textarea
+        formControlName="content"
+        placeholder="post content..."
+        class="w-full border-2 border-black rounded-xl px-4 py-2 text-sm shadow-[3px_3px_0px_#000] outline-none resize-none h-24"
+      ></textarea>
+      @if (addForm.controls.content.invalid && addForm.controls.content.touched) {
+        <p class="text-red-400 text-xs mt-1">content must be at least 10 characters</p>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="bg-green-400 border-2 border-black px-4 py-2 rounded-full shadow-[3px_3px_0px_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0px_#000] transition-all text-sm font-medium"
+    >
+      add post!
+    </button>
+  </form>
+</div>
